@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|center_horizontal|center_vertical"
+    android:orientation="vertical"
+    tools:context=".SignInActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:gravity="center|center_horizontal"
+        android:text="@string/app_name"
+        android:textColor="@color/backgroundGreenColor"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/ff_hint_username"
+        app:boxStrokeColor="@color/box_stroke_color"
+        app:hintTextColor="@color/box_hint_text_color"
+        app:startIconDrawable="@drawable/icon_email"
+        app:startIconTintMode="src_in">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText_login_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ff_login_margin_left"
+            android:layout_marginTop="@dimen/ff_login_margin_top"
+            android:layout_marginRight="@dimen/ff_login_margin_right"
+            android:layout_marginBottom="@dimen/ff_login_margin_bottom"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_text_input"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:hint="@string/ff_hint_password"
+        app:boxStrokeColor="@color/box_stroke_color"
+        app:counterEnabled="true"
+        app:endIconTint="#FFFFFF"
+        app:endIconTintMode="screen"
+
+        app:errorEnabled="true"
+        app:errorTextColor="@android:color/holo_red_dark"
+        app:hintTextColor="@color/box_hint_text_color"
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@drawable/icon_password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText_login_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ff_login_margin_left"
+            android:layout_marginTop="@dimen/ff_login_margin_top"
+            android:layout_marginRight="@dimen/ff_login_margin_right"
+            android:layout_marginBottom="@dimen/ff_login_margin_bottom"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <RadioButton
+        android:id="@+id/radioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remember me" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/ff_login_button_margin_right"
+        android:layout_marginTop="@dimen/ff_login_button_margin_top"
+        android:layout_marginRight="@dimen/ff_login_button_margin_right"
+        android:layout_marginBottom="@dimen/ff_login_button_margin_bottom"
+        android:backgroundTint="@color/backgroundGreenColor"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/ff_button_sign_in"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:cornerRadius="5dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/register_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/ff_login_button_margin_left"
+        android:layout_marginRight="@dimen/ff_login_button_margin_right"
+        android:layout_marginBottom="@dimen/ff_login_button_margin_bottom"
+        android:backgroundTint="#DEC0F6C3"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/ff_button_register"
+        android:textColor="#388E3C"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:cornerRadius="5dp" />
+
+
+</LinearLayout>
