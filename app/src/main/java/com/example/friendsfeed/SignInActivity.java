@@ -19,6 +19,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.friendsfeed.SharedPreference.SavedLoginAuthentication;
 import com.example.friendsfeed.SharedPreference.SharedPrefManager;
+import com.example.friendsfeed.util.SignInJSONParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,26 +65,34 @@ public class SignInActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "onResponse: " + response);
+                        SignInJSONParser parser = new SignInJSONParser();
+                        if (parser.signInJsonParse(response) != null) {
+                            SharedPrefManager sp = SharedPrefManager.getInstance(SignInActivity.this);
+                            sp.putSignInStatus(parser.signInJsonParse(response));
+                            startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                            finish();
+                        }
+                        /*
                         try {
                             int status = response.getInt("status");
                             if (status == 200) {
                                 JSONArray message = response.getJSONArray("message");
                                 JSONObject detail = message.getJSONObject(0);
 
-                                String id = String.valueOf(detail.getInt("id"));
-                                String name = detail.getString("name");
-                                String username = detail.getString("username");
-                                String email = detail.getString("email");
-                                String email_verified_at = detail.getString("email_verified_at");
-                                String profileImage = detail.getString("profileImage");
-                                String profileCover = detail.getString("profileCover");
-                                String following = detail.getString("following");
-                                String followers = detail.getString("followers");
-                                String bio = detail.getString("bio");
-                                String country = detail.getString("country");
-                                String website = detail.getString("website");
-                                String created_at = detail.getString("created_at");
-                                String updated_at = detail.getString("updated_at");
+                                String id = String.valueOf(detail.optInt("id"));
+                                String name = detail.optString("name");
+                                String username = detail.optString("username");
+                                String email = detail.optString("email");
+                                String email_verified_at = detail.optString("email_verified_at");
+                                String profileImage = detail.optString("profileImage");
+                                String profileCover = detail.optString("profileCover");
+                                String following = detail.optString("following");
+                                String followers = detail.optString("followers");
+                                String bio = detail.optString("bio");
+                                String country = detail.optString("country");
+                                String website = detail.optString("website");
+                                String created_at = detail.optString("created_at");
+                                String updated_at = detail.optString("updated_at");
 
                                 SavedLoginAuthentication sla = new
                                         SavedLoginAuthentication(id, name, username, email, email_verified_at,
@@ -101,7 +110,7 @@ public class SignInActivity extends AppCompatActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                        }
+                        }*/
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -125,7 +134,7 @@ public class SignInActivity extends AppCompatActivity {
 
             String uName = loginEmail.getText().toString();
             String uPass = loginPassword.getText().toString();
-            final String loginAPIURL = "https://diready.co/api/login?email="+uName+"&password="+uPass;
+            final String loginAPIURL = "https://diready.co/api/login?email=" + uName + "&password=" + uPass;
             signIn(loginAPIURL);
         }
     }

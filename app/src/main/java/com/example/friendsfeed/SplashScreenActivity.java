@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.WindowManager;
 
 import com.example.friendsfeed.SharedPreference.SharedPrefManager;
-import com.example.friendsfeed.application.FriendsFeedApplication;
 
 /**
  * @Project FriendsFeed

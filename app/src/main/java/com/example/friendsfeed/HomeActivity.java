@@ -3,26 +3,14 @@ package com.example.friendsfeed;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.transition.Fade;
 
-import android.content.ClipData;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.animation.ScaleAnimation;
-import android.widget.AbsListView;
-import android.widget.FrameLayout;
 
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.example.friendsfeed.fragment.HomeFragment;
+import com.example.friendsfeed.fragment.MyPostFragment;
+import com.example.friendsfeed.viewModel.MyPostModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
 
 /**
  * @Project FriendsFeed
@@ -56,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     switch (item.getItemId()) {
                         case R.id.nav_Home:
-                            // selectedFragment = new MyPostFragment();
+                            selectedFragment = new HomeFragment();
                             break;
                         case R.id.nav_Search:
                             //selectedFragment = new MyPostFragment();

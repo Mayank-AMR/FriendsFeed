@@ -1,4 +1,4 @@
-package com.example.friendsfeed;
+package com.example.friendsfeed.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -15,7 +15,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.friendsfeed.R;
 import com.example.friendsfeed.SharedPreference.SharedPrefManager;
+import com.example.friendsfeed.model.MyPostsContainer;
 
 import java.util.ArrayList;
 

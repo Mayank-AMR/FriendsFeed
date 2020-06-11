@@ -1,4 +1,4 @@
-package com.example.friendsfeed;
+package com.example.friendsfeed.model;
 
 /**
  * @Project FriendsFeed

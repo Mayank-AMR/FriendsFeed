@@ -1,8 +1,10 @@
-package com.example.friendsfeed;
+package com.example.friendsfeed.viewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.friendsfeed.model.MyPostsContainer;
 
 import java.util.ArrayList;
 

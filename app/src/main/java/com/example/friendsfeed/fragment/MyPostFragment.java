@@ -1,4 +1,4 @@
-package com.example.friendsfeed;
+package com.example.friendsfeed.fragment;
 
 import android.os.Bundle;
 
@@ -20,10 +20,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.friendsfeed.adapter.MyPostAdapter;
+import com.example.friendsfeed.util.MyPostJSONParser;
+import com.example.friendsfeed.viewModel.MyPostModel;
+import com.example.friendsfeed.model.MyPostsContainer;
+import com.example.friendsfeed.R;
 import com.example.friendsfeed.SharedPreference.SharedPrefManager;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -44,7 +47,7 @@ public class MyPostFragment extends Fragment {
 //    private static final String ARG_PARAM2 = "param2";
     private RecyclerView mRecyclerView;
     private MyPostAdapter myPostAdapter;
-    private MyPostModel mainModel;
+    private MyPostModel myPostModel;
     private ArrayList<MyPostsContainer> containerArrayList;
     private RequestQueue mRequestQueue;
 
@@ -126,9 +129,8 @@ public class MyPostFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 
-
-        mainModel = ViewModelProviders.of(getActivity()).get(MyPostModel.class);
-        mainModel.getRawDataList().observe(getViewLifecycleOwner(), new Observer<ArrayList<MyPostsContainer>>() {
+        myPostModel = ViewModelProviders.of(getActivity()).get(MyPostModel.class);
+        myPostModel.getRawDataList().observe(getViewLifecycleOwner(), new Observer<ArrayList<MyPostsContainer>>() {
             @Override
             public void onChanged(ArrayList<MyPostsContainer> list) {
                 Log.d(TAG, "onChanged: " + list.size());
@@ -145,15 +147,17 @@ public class MyPostFragment extends Fragment {
     private void parseJSON() {
         Log.d(TAG, "parseJSON: start");
         String id = "";
-        if(SharedPrefManager.getInstance(getActivity()).isSignIn()){
+        if (SharedPrefManager.getInstance(getActivity()).isSignIn()) {
             SharedPrefManager sp = SharedPrefManager.getInstance(getActivity());
             id = sp.getLoginAuthentication().getUserId();
         }
-        final String url = "https://diready.co/api/userpost?user_id="+id;
+        //final String url = "https://diready.co/api/userpost?user_id="+id;
+        final String url = "https://diready.co/api/userpost?user_id=" + 1;
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        /*
                         try {
                             if (response.getInt("status") == 200) {
                                 JSONArray messageArray = response.getJSONArray("message");
@@ -187,6 +191,12 @@ public class MyPostFragment extends Fragment {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        */
+                        containerArrayList = MyPostJSONParser.postJsonParser(response);
+                        if (containerArrayList != null) {
+                            myPostModel.setRawData(containerArrayList);
+                        }
+
                         Log.d(TAG, "onResponse: \n" + response);
                     }
                 }, new Response.ErrorListener() {
