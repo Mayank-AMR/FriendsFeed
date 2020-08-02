@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.WindowManager;
 
 import com.example.friendsfeed.SharedPreference.SharedPrefManager;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 /**
  * @Project FriendsFeed
@@ -29,6 +31,16 @@ public class SplashScreenActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        // Enable FCM to generate Instance.
+        //generateFCMInstanceID();
+
+        // Getting extra data from Notification message.
+        if (getIntent()!=null && getIntent().hasExtra("key1")){
+            for (String key : getIntent().getExtras().keySet()){
+                Log.d(TAG, "onCreate: "+key +" Data: "+getIntent().getExtras().getString(key));
+            }
+        }
 
 
         Thread myThread = new Thread() {
@@ -57,4 +69,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         myThread.start();
 
     }
+
+
+    public void generateFCMInstanceID() {
+
+    }
+
 }

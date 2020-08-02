@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,21 +16,26 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.friendsfeed.SharedPreference.SavedLoginAuthentication;
 import com.example.friendsfeed.SharedPreference.SharedPrefManager;
+import com.example.friendsfeed.apiHandle.APIHandler;
 import com.example.friendsfeed.util.SignInJSONParser;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SignInActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity /*implements GestureDetector.OnGestureListener*/ {
     private static final String TAG = "SignInActivity";
     private EditText loginEmail;
     private EditText loginPassword;
     private Button signInButton;
     private Button registerButton;
     private RequestQueue mRequestQueue;
+
+    /*
+    // Variable declaration for side scroll feature
+    private GestureDetector gestureDetector;
+    private float x1, x2, y1, y2;
+    private static int MIN_DISTANCE = 150;
+    */
 
 
     @Override
@@ -42,8 +46,12 @@ public class SignInActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
+/*
+        //Initialising GestureDetector....
+        this.gestureDetector = new GestureDetector(SignInActivity.this, this);
+*/
 
-        loginEmail = findViewById(R.id.editText_login_email);
+        loginEmail = findViewById(R.id.tvFullName);
         loginPassword = findViewById(R.id.editText_login_password);
 
         signInButton = findViewById(R.id.sign_in_button);
@@ -52,14 +60,22 @@ public class SignInActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                entryValidate();
+                if(entryValid())
+                    prepareSignInRequest();
+            }
+        });
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignInActivity.this,SignUpActivity.class));
             }
         });
 
 
     }
 
-    private void signIn(final String loginAPIURL) {
+    private void createSignInRequest(final String loginAPIURL) {
+        mRequestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, loginAPIURL, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -72,45 +88,7 @@ public class SignInActivity extends AppCompatActivity {
                             startActivity(new Intent(SignInActivity.this, HomeActivity.class));
                             finish();
                         }
-                        /*
-                        try {
-                            int status = response.getInt("status");
-                            if (status == 200) {
-                                JSONArray message = response.getJSONArray("message");
-                                JSONObject detail = message.getJSONObject(0);
 
-                                String id = String.valueOf(detail.optInt("id"));
-                                String name = detail.optString("name");
-                                String username = detail.optString("username");
-                                String email = detail.optString("email");
-                                String email_verified_at = detail.optString("email_verified_at");
-                                String profileImage = detail.optString("profileImage");
-                                String profileCover = detail.optString("profileCover");
-                                String following = detail.optString("following");
-                                String followers = detail.optString("followers");
-                                String bio = detail.optString("bio");
-                                String country = detail.optString("country");
-                                String website = detail.optString("website");
-                                String created_at = detail.optString("created_at");
-                                String updated_at = detail.optString("updated_at");
-
-                                SavedLoginAuthentication sla = new
-                                        SavedLoginAuthentication(id, name, username, email, email_verified_at,
-                                        profileImage, profileCover, following, followers, bio, country, website,
-                                        created_at, updated_at);
-
-                                SharedPrefManager sp = SharedPrefManager.getInstance(SignInActivity.this);
-                                sp.putSignInStatus(sla);
-
-                                Toast.makeText(SignInActivity.this, "Success.", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(SignInActivity.this, HomeActivity.class));
-                                finish();
-                            } else {
-                                Toast.makeText(SignInActivity.this, "" + response.getString("message"), Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }*/
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -122,20 +100,97 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
-    private void entryValidate() {
+    private boolean entryValid() {
         if (TextUtils.isEmpty(loginEmail.getText())) {
             loginEmail.setError("please enter email.");
             loginEmail.setFocusable(true);
+            return false;
         } else if (TextUtils.isEmpty(loginPassword.getText())) {
             loginPassword.setError("please enter password");
             loginPassword.setFocusable(true);
+            return false;
         } else {
-            mRequestQueue = Volley.newRequestQueue(this);
-
-            String uName = loginEmail.getText().toString();
-            String uPass = loginPassword.getText().toString();
-            final String loginAPIURL = "https://diready.co/api/login?email=" + uName + "&password=" + uPass;
-            signIn(loginAPIURL);
+            return true;
         }
     }
+
+    private void prepareSignInRequest(){
+        String uName = loginEmail.getText().toString();
+        String uPass = loginPassword.getText().toString();
+//            final String loginAPIURL = "https://diready.co/api/login?email=" + uName + "&password=" + uPass;
+//            signIn(loginAPIURL);
+        createSignInRequest(APIHandler.signInUriBuilder(uName,uPass));
+    }
+/*
+// Side Scrolling feature
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        return false;
+    }
+
+    // Override onTouch event
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        gestureDetector.onTouchEvent(event);
+        switch (event.getAction()) {
+
+            // Starting time swipe gesture
+            case MotionEvent.ACTION_DOWN:
+                x1 = event.getX();
+                y1 = event.getY();
+                break;
+
+            //Ending time swipe gesture
+            case MotionEvent.ACTION_UP:
+                x2 = event.getX();
+                y2 = event.getY();
+
+                // Calculating value of horizontal swipe
+                float valueX = x2 - x1;
+
+                // Calculating value of horizontal swipe
+                float valueY = y2 - y1;
+
+                if (Math.abs(valueX) > MIN_DISTANCE) {
+
+                    // detect left to right swipe
+                    if (x2 > x1) {
+                        // right swipe
+                        startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
+                    } else {
+                        // left swipe
+                        // perform Action
+                    }
+                }
+        }
+        return super.onTouchEvent(event);
+    }
+ */
+
 }

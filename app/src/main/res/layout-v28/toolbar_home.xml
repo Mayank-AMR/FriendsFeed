@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.MaterialToolbar
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="FriendsFeed"
+        android:textColor="#282A2C"
+
+        android:textSize="14dp" />
+
+
+    <ImageView
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_menu"/>
+    <ImageView
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_person"/>
+<!--    <ImageView-->
+<!--        android:layout_width="17dp"-->
+<!--        android:layout_height="17dp"-->
+<!--        android:layout_gravity="right"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:src="@drawable/ic_graph"/>-->
+
+
+</com.google.android.material.appbar.MaterialToolbar>

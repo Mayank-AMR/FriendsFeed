@@ -1,5 +1,6 @@
 package com.example.friendsfeed.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,6 +29,7 @@ import com.example.friendsfeed.model.MyPostsContainer;
 import com.example.friendsfeed.R;
 import com.example.friendsfeed.SharedPreference.SharedPrefManager;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -151,48 +154,23 @@ public class MyPostFragment extends Fragment {
             SharedPrefManager sp = SharedPrefManager.getInstance(getActivity());
             id = sp.getLoginAuthentication().getUserId();
         }
-        //final String url = "https://diready.co/api/userpost?user_id="+id;
-        final String url = "https://diready.co/api/userpost?user_id=" + 1;
+        final String url = "https://diready.co/api/userpost?user_id=" + id;
+        //final String url = "https://diready.co/api/userpost?user_id=" + 1;
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        /*
+                        Log.d(TAG, "onResponse: "+response.toString());
                         try {
                             if (response.getInt("status") == 200) {
-                                JSONArray messageArray = response.getJSONArray("message");
-                                JSONArray likeArray = response.getJSONArray("like");
-                                if (messageArray.length() == likeArray.length()) {
-                                    for (int i = 0; i < messageArray.length(); i++) {
-                                        JSONObject message = messageArray.getJSONObject(i);
-                                        JSONObject like = likeArray.getJSONObject(i);
-
-                                        String postId = String.valueOf(message.getInt("post_id"));
-                                        String post = message.getString("post");
-                                        String userId = message.getString("user_id");
-                                        String postImage = message.getString("post_image");
-                                        String likesCount = message.getString("likes_count");
-                                        String commentsCount = message.getString("comments_count");
-                                        String createdAt = message.getString("created_at");
-                                        String updatedAt = message.getString("updated_at");
-
-                                        boolean selfLikeStatus = Boolean.parseBoolean(like.getString("status"));
-
-                                        containerArrayList.add(new MyPostsContainer(postId, post, userId,
-                                                postImage, likesCount, commentsCount, createdAt, updatedAt, selfLikeStatus));
-                                    }
-
-                                    mainModel.setRawData(containerArrayList);
-//                                    myPostAdapter = new MyPostAdapter(getActivity(), containerArrayList);
-//                                    mRecyclerView.setAdapter(myPostAdapter);
-                                }
-
+                                containerArrayList = MyPostJSONParser.postJsonParser(response);
+                            } else {
+                                Log.d(TAG, "onResponse: No Post done by user.");
+                                showNoDataToast(getActivity());
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        */
-                        containerArrayList = MyPostJSONParser.postJsonParser(response);
                         if (containerArrayList != null) {
                             myPostModel.setRawData(containerArrayList);
                         }
@@ -203,10 +181,16 @@ public class MyPostFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d(TAG, "onErrorResponse: " + error.getMessage());
+                showNoDataToast(getActivity());
                 error.printStackTrace();
             }
         });
         mRequestQueue.add(objectRequest);
         Log.d(TAG, "parseJSON: end");
     }
+
+    public void showNoDataToast(Context c) {
+        Toast.makeText(c, "No Post done", Toast.LENGTH_SHORT).show();
+    }
+
 }

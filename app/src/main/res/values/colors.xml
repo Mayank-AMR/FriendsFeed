@@ -18,4 +18,10 @@
 
     <color name="colorNavigationBackground">#E4DDFAD8</color>
 
+
+    <color name="tab_unselect_txt">#c9c9cb</color>
+    <color name="tab_select_txt">#000</color>
+    <color name="tab_select_txt1">#000</color>
+    <color name="titleColor">#fff</color>
+
 </resources>

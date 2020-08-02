@@ -1,0 +1,33 @@
+<tabs>
+    <tab
+        id="@+id/home"
+        icon="@drawable/ic_grid"
+        activeColor="@color/tab_select_txt1"
+        inActiveColor="@color/tab_unselect_txt"
+
+        />
+    <tab
+        id="@+id/discover"
+        icon="@drawable/ic_bullet"
+        activeColor="@color/tab_select_txt1"
+        inActiveColor="@color/tab_unselect_txt"
+
+
+        />
+    <tab
+        id="@+id/schedule"
+        icon="@drawable/ic_person"
+        activeColor="@color/tab_select_txt1"
+        inActiveColor="@color/tab_unselect_txt"
+
+        />
+    <tab
+        id="@+id/favorite"
+        icon="@drawable/ic_bookmark"
+        activeColor="@color/tab_select_txt1"
+        inActiveColor="@color/tab_unselect_txt"
+
+
+        />
+
+</tabs>

@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_gravity="center|center_horizontal|center_vertical"
+    android:background="@drawable/my_gradient"
     android:orientation="vertical"
+    android:paddingTop="80dp"
     tools:context=".SignInActivity">
 
     <TextView
@@ -28,16 +30,24 @@
         app:hintTextColor="@color/box_hint_text_color"
         app:startIconDrawable="@drawable/icon_email"
         app:startIconTintMode="src_in">
+        <!--    <com.google.android.material.textfield.TextInputLayout-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:hint="@string/ff_hint_username"-->
+        <!--        app:boxStrokeColor="@color/box_stroke_color"-->
+        <!--        app:hintTextColor="@color/box_hint_text_color"-->
+        <!--        app:startIconDrawable="@drawable/icon_email">-->
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editText_login_email"
+            android:id="@+id/tvFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ff_login_margin_left"
             android:layout_marginTop="@dimen/ff_login_margin_top"
             android:layout_marginRight="@dimen/ff_login_margin_right"
             android:layout_marginBottom="@dimen/ff_login_margin_bottom"
+            android:alpha="0.5"
             android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -68,16 +78,11 @@
             android:layout_marginTop="@dimen/ff_login_margin_top"
             android:layout_marginRight="@dimen/ff_login_margin_right"
             android:layout_marginBottom="@dimen/ff_login_margin_bottom"
+            android:alpha="0.5"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <RadioButton
-        android:id="@+id/radioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Remember me" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_in_button"

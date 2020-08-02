@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/home"
+        icon="@drawable/ic_home"
+        activeColor="@color/tab_select_txt"
+        inActiveColor="@color/tab_unselect_txt"
+
+        />
+    <tab
+        id="@+id/discover"
+        icon="@drawable/ic_search"
+        activeColor="@color/tab_select_txt"
+        inActiveColor="@color/tab_unselect_txt"
+
+
+        />
+    <tab
+        id="@+id/schedule"
+        icon="@drawable/ic_add"
+        activeColor="@color/tab_select_txt"
+        inActiveColor="@color/tab_unselect_txt"
+
+        />
+    <tab
+        id="@+id/favorite"
+        icon="@drawable/ic_like"
+        activeColor="@color/tab_select_txt"
+        inActiveColor="@color/tab_unselect_txt"
+
+
+        />
+    <tab
+        id="@+id/more"
+        icon="@drawable/ic_profile"
+        activeColor="@color/tab_select_txt"
+        inActiveColor="@color/tab_unselect_txt"
+
+        />
+</tabs>
