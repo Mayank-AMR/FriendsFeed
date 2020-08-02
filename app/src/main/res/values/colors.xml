@@ -24,4 +24,6 @@
     <color name="tab_select_txt1">#000</color>
     <color name="titleColor">#fff</color>
 
+    <color name="fragment_post">#4FC3F7</color>
+
 </resources>

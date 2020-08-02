@@ -2,9 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryLight</item>
         <item name="colorAccent">@color/box_stroke_color</item>
     </style>
 
@@ -13,61 +11,30 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="colorPrimary">@color/backgroundGreenColor</item>
         <item name="colorPrimaryDark">#81C784</item>
-<!--        <item name="colorAccent">@color/colorAccent</item>-->
+        <!--        <item name="colorAccent">@color/colorAccent</item>-->
         <item name="android:windowContentTransitions">true</item>
     </style>
 
-    <!--*************************    Custom Theme  start        *******************************  -->
-    <style name="myCustomAppBarTheme" parent="Theme.AppCompat.Light">
-        <item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>
-        <item name="actionBarStyle">@style/AppTheme.ActionBar</item>
-    </style>
-
-    <style name="AppTheme.ActionBar" parent="Widget.AppCompat.Light.ActionBar">
-        <item name="android:titleTextStyle">@style/AppTheme.ActionBar.TitleText</item>
-        <item name="titleTextStyle">@style/AppTheme.ActionBar.TitleText</item>
-        <item name="android:height">100dp</item>
-        <item name="height">100dp</item>
-    </style>
-
-    <style name="AppTheme.ActionBar.TitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/backgroundWhiteColor</item>
-    </style>
-    <!--****************************  Custom Theme  End         *******************************  -->
-
-    <style name="Widget.Shrine.Toolbar" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">?attr/colorAccent</item>
-        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-    </style>
+<!--    <style name="Widget.Shrine.Toolbar" parent="Widget.AppCompat.Toolbar">-->
+<!--        <item name="android:background">?attr/colorAccent</item>-->
+<!--        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>-->
+<!--        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>-->
+<!--    </style>-->
 
 
-<!--    https://github.com/material-components/material-components-android/blob/master/docs/theming/Shape.md-->
-<!--    Custom-->
+    <!--    https://github.com/material-components/material-components-android/blob/master/docs/theming/Shape.md-->
+    <!--    Custom-->
     <style name="ShapeAppearance.ImageView.RightTopBottomRound" parent="Widget.MaterialComponents.CardView">
         <item name="cornerFamily">rounded</item>
-<!--        <item name="cornerFamilyTopRight">rounded</item>-->
+        <!--        <item name="cornerFamilyTopRight">rounded</item>-->
         <item name="cornerSizeTopRight">50%</item>
         <item name="cornerSizeBottomRight">50%</item>
     </style>
 
+    <!--    For circular imageview in chat -->
     <style name="circleImageView" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
-    </style>
-    <style name="ShapeAppearanceOverlay.MyApp.MaterialCardView" parent="">
-<!--        <item name="cornerFamily">rounded</item>-->
-<!--        <item name="cornerSize">16dp</item>-->
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerFamilyTopRight">rounded</item>
-        <item name="cornerSizeTopRight">16dp</item>
-        <item name="cornerSizeBottomRight">16dp</item>
-    </style>
-
-
-    <style name="botoombar_textchange">
-        <item name="android:textSize">10dp</item>
     </style>
 
 

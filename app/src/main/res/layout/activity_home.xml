@@ -6,88 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
-        <include layout="@layout/toolbar_home" />
-
-    </com.google.android.material.appbar.MaterialToolbar>
-
-
-
     <FrameLayout
         android:id="@+id/frm_Home"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
 
+    <!--    style="@style/Widget.MaterialComponents.BottomNavigationView"-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
-        style="@style/Widget.MaterialComponents.BottomNavigationView"
+        style="@style/Widget.MaterialComponents.BottomAppBar"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:alpha="1"
         android:background="@color/colorNavigationBackground"
         android:elevation="5dp"
+        app:elevation="8dp"
         app:itemHorizontalTranslationEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigation" />
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@drawable/shadow"
+        app:layout_constraintBottom_toTopOf="@+id/frm_Home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--    xmlns:tools="http://schemas.android.com/tools"-->
-    <!--    android:layout_width="match_parent"-->
-    <!--    android:layout_height="match_parent"-->
-    <!--    tools:context=".HomeActivity">-->
-    <!--    <LinearLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="vertical">-->
-    <!--        <include layout="@layout/toolbar_home" />-->
-    <!--        <LinearLayout-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="3dp"-->
-    <!--            android:background="@drawable/shadow"></LinearLayout>-->
-
-    <!--        <FrameLayout-->
-    <!--            android:id="@+id/framelayout"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:layout_above="@id/bottombar">-->
-    <!--        </FrameLayout>-->
-    <!--    </LinearLayout>-->
-    <!--    <com.google.android.material.bottomappbar.BottomAppBar-->
-    <!--        android:id="@+id/bottombar"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="53dp"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        android:background="#fff"-->
-    <!--        android:elevation="8dp"-->
-    <!--        android:gravity="bottom|end"-->
-    <!--        android:layout_gravity="bottom"-->
-    <!--        app:bb_activeTabColor="#ffffff"-->
-    <!--        app:bb_badgesHideWhenActive="true"-->
-    <!--        app:bb_inActiveTabColor="#a4ebfe"-->
-    <!--        app:bb_showShadow="true"-->
-    <!--        app:bb_tabXmlResource="@xml/tab"-->
-    <!--        app:bb_titleTextAppearance="@style/botoombar_textchange"-->
-    <!--        app:bb_titleTypeFace="fonts/Roboto-Regular.ttf"-->
-    <!--        app:paddingStart="10dp"-->
-    <!--        tools:ignore="BottomAppBar" />-->
-
-
-    <!--</RelativeLayout>-->

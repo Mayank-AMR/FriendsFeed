@@ -166,7 +166,7 @@ public class MyPostFragment extends Fragment {
                                 containerArrayList = MyPostJSONParser.postJsonParser(response);
                             } else {
                                 Log.d(TAG, "onResponse: No Post done by user.");
-                                showNoDataToast(getActivity());
+                                //showNoDataToast(getActivity());
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -181,7 +181,7 @@ public class MyPostFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d(TAG, "onErrorResponse: " + error.getMessage());
-                showNoDataToast(getActivity());
+                //showNoDataToast(getActivity());
                 error.printStackTrace();
             }
         });
@@ -189,8 +189,8 @@ public class MyPostFragment extends Fragment {
         Log.d(TAG, "parseJSON: end");
     }
 
-    public void showNoDataToast(Context c) {
-        Toast.makeText(c, "No Post done", Toast.LENGTH_SHORT).show();
-    }
+//    public void showNoDataToast(Context c) {
+//        Toast.makeText(c, "No Post done", Toast.LENGTH_SHORT).show();
+//    }
 
 }
