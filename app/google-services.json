@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1048932212146",
+    "firebase_url": "https://friendsfeed-62ff8.firebaseio.com",
+    "project_id": "friendsfeed-62ff8",
+    "storage_bucket": "friendsfeed-62ff8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048932212146:android:fcf441c4091e8c9dfd58ab",
+        "android_client_info": {
+          "package_name": "com.example.friendsfeed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048932212146-mrsept6h367lialgu21rddiemctbenkj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsj1gOisihvSBsOW-V_XxS5UssGsZeQ-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1048932212146-mrsept6h367lialgu21rddiemctbenkj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
