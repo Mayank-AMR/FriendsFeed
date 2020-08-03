@@ -4,15 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.friendsfeed.fragment.DescribeFragment;
+import com.example.friendsfeed.fragment.CreatePostFragment;
 import com.example.friendsfeed.fragment.FavoriteFragment;
 import com.example.friendsfeed.fragment.MoreProfileFragment;
 import com.example.friendsfeed.fragment.MyPostFragment;
-import com.example.friendsfeed.fragment.ScheduleFragment;
+import com.example.friendsfeed.fragment.SearchFragment;
 import com.example.friendsfeed.viewModel.MyPostModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -50,12 +49,12 @@ public class HomeActivity extends AppCompatActivity {
                         case R.id.nav_Home:
                             selectedFragment = MyPostFragment.newInstance();
                             break;
-                        case R.id.nav_Describe:
-                            selectedFragment = DescribeFragment.newInstance("param 1", "Param 2");
+                        case R.id.nav_Search:
+                            selectedFragment = SearchFragment.newInstance("Param 1", "Param 2");
                             break;
 
-                        case R.id.nav_Schedule:
-                            selectedFragment = ScheduleFragment.newInstance("param 1", "Param 2");
+                        case R.id.nav_Create_Post:
+                            selectedFragment = CreatePostFragment.newInstance("param 1", "Param 2");
                             break;
 
                         case R.id.nav_Favorite:
@@ -63,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
                             break;
 
                         case R.id.nav_More:
-                            selectedFragment = MoreProfileFragment.newInstance("parem 1", "parem 2");
+                            selectedFragment = MoreProfileFragment.newInstance("Param 1", "Param 2");
                             break;
                     }
                     getSupportFragmentManager()
