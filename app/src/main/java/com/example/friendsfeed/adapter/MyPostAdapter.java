@@ -1,25 +1,37 @@
 package com.example.friendsfeed.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.friendsfeed.R;
 import com.example.friendsfeed.SharedPreference.SharedPrefManager;
+import com.example.friendsfeed.dialog.BigImageDialog;
 import com.example.friendsfeed.model.MyPostsContainer;
 
 import java.util.ArrayList;
+
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
  * @Project FriendsFeed
@@ -47,7 +59,7 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.PostViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final PostViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder: start");
         MyPostsContainer currentContainer = rawDataContainerList.get(position);
 
@@ -66,8 +78,17 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.PostViewHo
             holder.postImage.setVisibility(View.GONE);
             holder.postImageContainerCardView.setVisibility(View.GONE);
         } else {
-            String postImageURL = "http://diready.co/storage/users/images/" + currentContainer.getPost_image();
+            final String postImageURL = "http://diready.co/storage/users/images/" + currentContainer.getPost_image();
             Glide.with(mContext).load(postImageURL).centerCrop().into(holder.postImage);
+
+            holder.postImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //showImage(postImageURL,view.getContext());
+                    FragmentManager manager = ((AppCompatActivity)mContext).getSupportFragmentManager();
+                    BigImageDialog.newInstance(postImageURL).show(manager,"");
+                }
+            });
         }
         holder.postTitle.setText(currentContainer.getPost_id());
         holder.postTitle.setVisibility(View.GONE);
@@ -85,6 +106,32 @@ public class MyPostAdapter extends RecyclerView.Adapter<MyPostAdapter.PostViewHo
         Log.d(TAG, "getItemCount: == " + rawDataContainerList.size());
         return rawDataContainerList.size();
     }
+
+//    public void showImage(String uriImage,Context mContext) {
+//
+//        Dialog builder = new Dialog(mContext);
+//        builder.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        builder.getWindow().setBackgroundDrawable(
+//                new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+//            @Override
+//            public void onDismiss(DialogInterface dialogInterface) {
+//                //nothing;
+//            }
+//        });
+//        ImageView imageView = new ImageView(mContext);
+////        imageView.setImageURI(imageUri);
+//        PhotoViewAttacher pAttacher = new PhotoViewAttacher(imageView);
+//        Glide.with(mContext).load(uriImage).placeholder(R.drawable.a18).into(imageView);
+//        pAttacher.update();
+//        builder.addContentView(imageView, new /*RelativeLayout.LayoutParams(
+//                ViewGroup.LayoutParams.WRAP_CONTENT,
+//                ViewGroup.LayoutParams.WRAP_CONTENT)*/
+//
+//                ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,
+//                ConstraintLayout.LayoutParams.MATCH_PARENT));
+//        builder.show();
+//    }
 
     public class PostViewHolder extends RecyclerView.ViewHolder {
         private static final String TAG = "PostViewHolder";

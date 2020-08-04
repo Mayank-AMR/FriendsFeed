@@ -60,6 +60,9 @@ dependencies {
     // Image compression library  Github: https://github.com/zetbaitsu/Compressor
     //implementation 'id.zelory:compressor:3.0.0'
 
+    // Photo view of Posted image Github: https://github.com/dingdingyr/PhotoView-
+    implementation 'com.commit451:PhotoView:1.2.4'
+
     // Image and video compress library Github: https://github.com/Tourenathan-G5organisation/SiliCompressor
     implementation 'com.iceteck.silicompressorr:silicompressor:2.2.3'
 

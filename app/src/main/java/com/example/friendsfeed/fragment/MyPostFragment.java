@@ -1,6 +1,9 @@
 package com.example.friendsfeed.fragment;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -14,6 +17,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.example.friendsfeed.adapter.MyPostAdapter;
 import com.example.friendsfeed.util.MyPostJSONParser;
 import com.example.friendsfeed.viewModel.MyPostModel;
@@ -32,7 +39,10 @@ import com.example.friendsfeed.SharedPreference.SharedPrefManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import java.util.ArrayList;
+
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 
 /**
@@ -110,8 +120,7 @@ public class MyPostFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: start");
 
         // Inflate the layout for this fragment
