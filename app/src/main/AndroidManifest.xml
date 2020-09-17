@@ -4,10 +4,11 @@
     package="com.example.friendsfeed">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <uses-feature android:name="android.hardware.camera"
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="false" />
 
     <application
@@ -18,9 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FriendsFeed"
         ndroid:name=".application.FriendsFeedApplication">
-        <activity android:name=".ChatActivity">
-
-        </activity>
+        <activity android:name=".auth.LoginActivity"></activity>
+        <activity android:name=".ChatActivity"></activity>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SignInActivity" />
         <activity android:name=".SplashScreenActivity">
@@ -38,9 +38,7 @@
 
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
-        </activity>
-
-<!-- FCM work start       -->
+        </activity> <!-- FCM work start -->
         <service
             android:name=".notificationManage.MyFirebaseMessagingService"
             android:exported="false">
@@ -48,35 +46,23 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
-     See README(https://goo.gl/l4GJaQ) for more. -->
+        <!--
+ Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_launcher_foreground" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/backgroundGreenColor" />
-
-        <!-- [START fcm_default_channel] -->
+            android:resource="@color/backgroundGreenColor" /> <!-- [START fcm_default_channel] -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="amr1212" />
-        <!-- [END fcm_default_channel] -->
-
-        <!-- [START fcm_disable_auto_init] -->
-<!--        <meta-data-->
-<!--            android:name="firebase_messaging_auto_init_enabled"-->
-<!--            android:value="false" />-->
-<!--        <meta-data-->
-<!--            android:name="firebase_analytics_collection_enabled"-->
-<!--            android:value="false" />-->
-        <!-- [END fcm_disable_auto_init] -->
-
-<!-- FCM work end        -->
-
     </application>
 
 </manifest>

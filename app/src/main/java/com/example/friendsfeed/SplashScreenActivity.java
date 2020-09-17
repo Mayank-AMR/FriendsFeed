@@ -1,6 +1,7 @@
 package com.example.friendsfeed;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModel;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.WindowManager;
 
 import com.example.friendsfeed.SharedPreference.SharedPrefManager;
+import com.example.friendsfeed.auth.LoginActivity;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -60,9 +62,11 @@ public class SplashScreenActivity extends AppCompatActivity {
                         startActivity(new Intent(SplashScreenActivity.this, HomeActivity.class));
                         finish();
                     } else {
-                        startActivity(new Intent(SplashScreenActivity.this, SignInActivity.class));
+                        startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
                         finish();
                     }
+                    //-----------------------------------------------------------------------------
+                    //------------------------------------------------------------------------------
                 }
             }
         };
@@ -70,9 +74,5 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     }
 
-
-    public void generateFCMInstanceID() {
-
-    }
 
 }

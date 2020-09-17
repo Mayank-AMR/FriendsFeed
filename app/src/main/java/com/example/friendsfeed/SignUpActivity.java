@@ -8,13 +8,16 @@ import android.icu.util.TimeZone;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.DateKeyListener;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -27,16 +30,18 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
     private static final String TAG = "SignUpActivity";
-
 
     private EditText userFullName, userEmail, userCreatePassword, userConfirmPassword, userDOB;
     private RequestQueue mSignUpRequestQueue;
@@ -55,17 +60,20 @@ public class SignUpActivity extends AppCompatActivity {
         findViewById(R.id.btnSignUpNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (entryValid())
+                if (entryValid()) {
                     prepareSignUpRequest();
+                }
             }
         });
 
         userFullName = findViewById(R.id.etFullName);
-        //userFullName.addTextChangedListener();
         userEmail = findViewById(R.id.etEmail);
         userCreatePassword = findViewById(R.id.etCreatePassword);
         userConfirmPassword = findViewById(R.id.etConfirmPassword);
         userDOB = findViewById(R.id.etDOB);
+//        userDOB.setFilters(new InputFilter[] {
+//                new DateKeyListener(), new InputFilter.LengthFilter(10)
+//        });
 
         userDOB.addTextChangedListener(mDateEntryWatcher);
         TextInputLayout dobLayout = findViewById(R.id.textInputLayoutDOB);
@@ -74,6 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
                 builder.setTitleText("Select Date of Birth");
+
 
                 MaterialDatePicker<Long> picker = builder.build();
                 Log.d(TAG, "onClick: " + picker.toString());
@@ -100,16 +109,6 @@ public class SignUpActivity extends AppCompatActivity {
                 picker.show(getSupportFragmentManager(), picker.toString());
             }
         });
-
-//        findViewById(R.id.button_SignIn_SignUpActivity).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
-//                finish();
-//            }
-//        });
-
-
     }
 
 
@@ -121,6 +120,7 @@ public class SignUpActivity extends AppCompatActivity {
             boolean isValid = true;
             if (working.length() == 2 && before == 0) {
                 if (Integer.parseInt(working) < 1 || Integer.parseInt(working) > 31) {
+                    userDOB.setText("");
                     isValid = false;
                 } else {
                     working += "/";
@@ -131,6 +131,7 @@ public class SignUpActivity extends AppCompatActivity {
                 String enteredMonth = working.substring(3);
                 if (Integer.parseInt(enteredMonth) < 1 || Integer.parseInt(enteredMonth) > 12) {
                     isValid = false;
+                    userDOB.setText("");
                 } else {
                     working += "/";
                     userDOB.setText(working);
@@ -198,7 +199,8 @@ public class SignUpActivity extends AppCompatActivity {
         }*/
 
         // Check Date of Birth not null, must have 10 character  and not grater than current date.
-        else if (TextUtils.isEmpty(userDOB.getText()) && userDOB.getText().toString().trim().length() != 10 /*TODO: Check not greater than current date*/) {
+        else if (TextUtils.isEmpty(userDOB.getText()) &&
+                userDOB.getText().toString().trim().length() != 10 /*TODO: Check not greater than current date*/) {
             textInputLayoutDOB = findViewById(R.id.textInputLayoutDOB);
             textInputLayoutDOB.setError("Please enter valid Birth date");
             return false;
@@ -210,6 +212,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void prepareSignUpRequest() {
+        // Pre process of sign up request...........................................................
         Log.d(TAG, "initialiseSignUpProcess: ");
         final String name = userEmail.getText().toString().trim();
         final String email = userEmail.getText().toString().trim();
@@ -220,7 +223,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         Date birthDate = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.US);
             try {
                 birthDate = dateFormat.parse(dob);
             } catch (ParseException e) {
@@ -228,9 +231,11 @@ public class SignUpActivity extends AppCompatActivity {
             }
         }
         // Create SignUp Request to the Database Server.........................................
-        createSignUpRequest(APIHandler.signUpUriBuilder(name, email, pass, dobDate, gender));
+        //createSignUpRequest(APIHandler.signUpUriBuilder(name, email, pass, dobDate, gender));
+        signUpRequest(APIHandler.registerUriBuilder(), getRegisterDataBody(name, email, pass, "1999-01-28", gender));
     }
 
+    /*vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv Deprecated code vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
     private void createSignUpRequest(final String signUpAPIURL) {
         Log.d(TAG, "signUp: ");
         mSignUpRequestQueue = Volley.newRequestQueue(this);
@@ -241,14 +246,14 @@ public class SignUpActivity extends AppCompatActivity {
                         Log.d(TAG, "onResponse: " + response);
                         if (SignUpJSONParser.signUpResultHandle(response)) {
                             Toast.makeText(SignUpActivity.this, "SignUp completed.", Toast.LENGTH_SHORT).show();
-                            //TODO Important: Now perform Login operation to get user data and save in shared preference.
+                            // Important: Now perform Login operation to get user data and save in shared preference.
                         }
-                        /*if (parser.signInJsonParse(response) != null) {
-                            SharedPrefManager sp = SharedPrefManager.getInstance(SignInActivity.this);
-                            sp.putSignInStatus(parser.signInJsonParse(response));
-                            startActivity(new Intent(SignInActivity.this, HomeActivity.class));
-                            finish();
-                        }*/
+//                        if (parser.signInJsonParse(response) != null) {
+//                            SharedPrefManager sp = SharedPrefManager.getInstance(SignInActivity.this);
+//                            sp.putSignInStatus(parser.signInJsonParse(response));
+//                            startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+//                            finish();
+//                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -258,4 +263,82 @@ public class SignUpActivity extends AppCompatActivity {
         });
         mSignUpRequestQueue.add(request);
     }
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Deprecated Code ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+
+    //-----------------New Register Work Goes Here -------------------------------------------------
+    //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+    private JSONObject getRegisterDataBody(String name, String email, String password, String dob, String gender) {
+        // Putting user data in JSONObject .........................................................
+        /**
+         * Use this method to create a new JSONObject that contains
+         * user registration data using the provided parameters.
+         *
+         * @param name User full name.
+         * @param email User email address.
+         * @param password User created password.
+         * @param gender User gender.
+         * @param dob User Date of Birth in [yyyy-mm-dd] format.
+         *
+         * @return A JSONObject.
+         */
+        JSONObject registerBody = new JSONObject();
+        try {
+            registerBody.put("name", name);
+            registerBody.put("email", email);
+            registerBody.put("password", password);
+            registerBody.put("gender", gender);
+            registerBody.put("dob", dob);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return registerBody;
+
+    }
+
+    private void signUpRequest(final String signUpAPIURL, final JSONObject registerDataBody) {
+        /**
+         * In this method the Sign Up action performed in #herokuapp Server.........................
+         *
+         * @param signUpAPIURL SignUp API url of Herokuapp server.
+         *@param registerDataBody User data in JSONObject format.
+         */
+        Log.d(TAG, "signUp: Herokuapp.com");
+        mSignUpRequestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, signUpAPIURL, registerDataBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse from herokuapp: " + response);
+//                        if (SignUpJSONParser.signUpResultHandle(response)) {
+//                            Toast.makeText(SignUpActivity.this, "SignUp completed.", Toast.LENGTH_SHORT).show();
+//                            //TODO Important: Now perform E-mail OTP verification.
+//                        }
+                        /**
+                         * The below code is for saving data in local storage.......................
+                         *
+                         if (parser.signInJsonParse(response) != null) {
+                         SharedPrefManager sp = SharedPrefManager.getInstance(SignInActivity.this);
+                         sp.putSignInStatus(parser.signInJsonParse(response));
+                         startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                         finish();
+                         }*/
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Accept", "application/json");
+                return headers;
+            }
+        };
+        mSignUpRequestQueue.add(request);
+    }
+    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    //-----------------New Register Work Goes Above ------------------------------------------------
 }

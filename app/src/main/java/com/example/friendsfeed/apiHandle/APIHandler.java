@@ -13,8 +13,9 @@ public class APIHandler {
     private static final String TAG = "APIHandler";
 
 
-    public static final String SIGN_UP_BASE_URL = "https://diready.co/api/register";
+    public static final String SIGN_UP_BASE_URL = "https://friendsfeed.herokuapp.com/api/users/register";
     public static final String SIGN_IN_BASE_URL = "https://diready.co/api/login";
+
     private static final String NAME_PARAM_SIGNUP = "name";
     private static final String EMAIL_PARAM_SIGNUP = "email";
     private static final String PASSWORD_PARAM_SIGNUP = "password";
@@ -25,6 +26,8 @@ public class APIHandler {
 
     private static final String EMAIL_PARAM_SIGNIN ="email";
     private static final String PASSWORD_PARAM_SIGNIN ="password";
+
+    /* _____________*** This code deprecated because it is for diredy.co server ***_________________
 
     // SignUp URL create...
     public static String signUpUriBuilder(String fullName, String email, String password, Date date, String gender) {
@@ -39,15 +42,26 @@ public class APIHandler {
                 .build();
         return signUpURI.toString();
     }
+    ______________________________________________________________________________________________*/
 
     //SignIn URL create
     public static String signInUriBuilder(String email, String password){
-        Uri signIpURI = Uri.parse(SIGN_IN_BASE_URL).buildUpon()
+        Uri signInURI = Uri.parse(SIGN_IN_BASE_URL).buildUpon()
                 .appendQueryParameter(EMAIL_PARAM_SIGNIN, email)
                 .appendQueryParameter(PASSWORD_PARAM_SIGNIN, password)
                 .build();
-        return signIpURI.toString();
+        return signInURI.toString();
+
+
+
+//        Uri signIn = Uri.parse("https://friendsfeed.herokuapp.com/api/users/login").buildUpon()
     }
+
+    public static String registerUriBuilder(){
+        Uri uri = Uri.parse(SIGN_UP_BASE_URL).buildUpon().build();
+        return uri.toString();
+    }
+
 
 
 }

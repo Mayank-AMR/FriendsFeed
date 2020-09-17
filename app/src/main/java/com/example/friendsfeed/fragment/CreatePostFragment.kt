@@ -61,14 +61,15 @@ class CreatePostFragment : Fragment() {
         Log.d(TAG, "onCreateView: start")
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_create_post, container, false)
-        imageView = view.findViewById<ImageView>(R.id.postIV)
-        view.findViewById<Button>(R.id.button3).setOnClickListener(View.OnClickListener {
-            //openGallery()
-            //openCamera()
-            //TODO: Check storage Permission to launch Camera
+        
+        imageView = view.findViewById<ImageView>(R.id.imageViewSelectImage)
+        view.findViewById<Button>(R.id.btnTakePhoto).setOnClickListener(View.OnClickListener {
+            //TODO: Check storage Permission to launch Camera bz camera save photo in internal storage before selecting.
             openCamera()
         })
-
+        view.findViewById<Button>(R.id.btnSelectImage).setOnClickListener(View.OnClickListener {
+            openGallery()
+        })
         Log.d(TAG, "onCreateView: end")
         return view
     }
@@ -180,7 +181,6 @@ class CreatePostFragment : Fragment() {
         imgvPhoto?.controller = controller
     }
     */
-
 
 
 }

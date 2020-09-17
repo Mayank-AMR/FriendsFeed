@@ -14,7 +14,6 @@ import com.example.friendsfeed.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import static com.example.friendsfeed.app.App.FCM_CHANNEL_ID;
 
 /**
  * @Project FriendsFeed
@@ -22,6 +21,7 @@ import static com.example.friendsfeed.app.App.FCM_CHANNEL_ID;
  */
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "MyFirebaseMessagingServ";
+    private static final String FCM_CHANNEL_ID = "FCM_CHANNEL_ID";
 
     @Override
     public void onNewToken(String token) {
