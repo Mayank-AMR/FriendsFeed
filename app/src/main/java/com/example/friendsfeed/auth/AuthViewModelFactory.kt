@@ -2,7 +2,7 @@ package com.example.friendsfeed.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.friendsfeed.data.repositories.UserRepository
+import com.example.friendsfeed.auth.data.repositories.UserRepository
 
 /**
  * @Project FriendsFeed

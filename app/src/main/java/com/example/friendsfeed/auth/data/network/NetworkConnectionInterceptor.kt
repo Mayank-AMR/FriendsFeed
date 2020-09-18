@@ -1,4 +1,4 @@
-package com.example.friendsfeed.data.network
+package com.example.friendsfeed.auth.data.network
 
 import android.content.Context
 import android.net.ConnectivityManager

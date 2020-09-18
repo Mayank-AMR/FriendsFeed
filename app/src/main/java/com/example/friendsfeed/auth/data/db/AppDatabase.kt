@@ -1,11 +1,11 @@
-package com.example.friendsfeed.data.db
+package com.example.friendsfeed.auth.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.friendsfeed.data.db.entities.AccessToken
-import com.example.friendsfeed.data.network.responses.ResponseMessage
+import com.example.friendsfeed.auth.data.db.entities.AccessToken
+import com.example.friendsfeed.auth.data.network.responses.RegistrationResponseMessage
 
 /**
  * @Project FriendsFeed
@@ -26,7 +26,7 @@ abstract class AppDatabase : RoomDatabase() {
 
         private val LOCK = Any()
 
-        operator fun invoke(context: Context) = instance ?: synchronized(LOCK){
+        operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
             instance ?: buildDatabase(context).also {
                 instance = it
             }

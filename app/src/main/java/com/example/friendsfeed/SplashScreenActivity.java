@@ -1,7 +1,6 @@
 package com.example.friendsfeed;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModel;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +9,7 @@ import android.view.WindowManager;
 
 import com.example.friendsfeed.SharedPreference.SharedPrefManager;
 import com.example.friendsfeed.auth.LoginActivity;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
+import com.example.friendsfeed.postpackage.HomeActivity;
 
 /**
  * @Project FriendsFeed

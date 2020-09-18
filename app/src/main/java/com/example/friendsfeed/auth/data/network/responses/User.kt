@@ -1,4 +1,4 @@
-package com.example.friendsfeed.data.network.responses
+package com.example.friendsfeed.auth.data.network.responses
 
 /**
  * @Project FriendsFeed

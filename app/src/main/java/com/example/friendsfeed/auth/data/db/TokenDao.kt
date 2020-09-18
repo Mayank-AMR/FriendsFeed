@@ -1,13 +1,13 @@
-package com.example.friendsfeed.data.db
+package com.example.friendsfeed.auth.data.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.friendsfeed.data.db.entities.AccessToken
-import com.example.friendsfeed.data.db.entities.CURRENT_USER_ID
-import com.example.friendsfeed.data.network.responses.ResponseMessage
+import com.example.friendsfeed.auth.data.db.entities.AccessToken
+import com.example.friendsfeed.auth.data.db.entities.CURRENT_USER_ID
+import com.example.friendsfeed.auth.data.network.responses.ResponseMessage
 
 /**
  * @Project FriendsFeed

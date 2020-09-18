@@ -1,4 +1,4 @@
-package com.example.friendsfeed.data.db.entities
+package com.example.friendsfeed.auth.data.db.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

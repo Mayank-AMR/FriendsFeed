@@ -1,4 +1,4 @@
-package com.example.friendsfeed;
+package com.example.friendsfeed.postpackage;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.friendsfeed.R;
 import com.example.friendsfeed.fragment.CreatePostFragment;
 import com.example.friendsfeed.fragment.FavoriteFragment;
 import com.example.friendsfeed.fragment.MoreProfileFragment;

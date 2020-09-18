@@ -1,13 +1,15 @@
-package com.example.friendsfeed.data.network
+package com.example.friendsfeed.auth.data.network
 
-import com.example.friendsfeed.data.network.responses.AuthResponse
+import com.example.friendsfeed.auth.data.network.responses.AuthResponse
+import com.example.friendsfeed.auth.data.network.responses.RegistrationResponse
 import okhttp3.OkHttpClient
-import okhttp3.ResponseBody
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.*
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.Header
+import retrofit2.http.POST
 
 /**
  * @Project Sample Chat
@@ -22,6 +24,18 @@ interface MyApi {
             @Field("email") email: String,
             @Field("password") password: String
     ): Response<AuthResponse>
+
+    @FormUrlEncoded
+    @POST("register")
+    suspend fun userSignup(
+            @Header("Accept") accept_type: String?,
+            @Field("name") name: String,
+            @Field("email") email: String,
+            @Field("password") password: String,
+            @Field("gender") gender: String,
+            @Field("dob") dob: String
+    ): Response<RegistrationResponse>
+
 
     companion object {
         operator fun invoke(

@@ -1,11 +1,11 @@
-package com.example.friendsfeed.data.network
+package com.example.friendsfeed.auth.data.network
 
-import android.util.Log
 import com.example.friendsfeed.utils.ApiException
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Response
 import java.lang.StringBuilder
+import java.util.logging.ErrorManager
 
 /**
  * @Project FriendsFeed
@@ -19,16 +19,19 @@ abstract class SafeApiRequest {
             return response.body()!!
         } else {
             val error = response.errorBody()?.toString()
+            // error response is in JSON Object
+            // Response{protocol=http/1.1, code=404, message=Not Found, url=https://friendsfeed.herokuapp.com.../../..}
 
             val message = StringBuilder()
             error?.let {
                 try {
-                    message.append(JSONObject(it).getString("message"))
+                    if (response.code() == 404)
+                        message.append(" ${response.code()}")
                 } catch (e: JSONException) {
                 }
                 message.append("\n")
             }
-            message.append("Error Code: ${response.code()}")
+            message.append(" ${response.message()} ")
             throw ApiException(message.toString())
         }
     }

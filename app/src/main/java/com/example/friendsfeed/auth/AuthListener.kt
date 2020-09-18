@@ -1,6 +1,5 @@
 package com.example.friendsfeed.auth
 
-import com.example.friendsfeed.data.network.responses.ResponseMessage
 
 /**
  * @Project FriendsFeed
@@ -8,7 +7,7 @@ import com.example.friendsfeed.data.network.responses.ResponseMessage
  */
 interface AuthListener {
         fun onStarted()
-        fun onSuccess(response: List<ResponseMessage>)
+        fun onSuccess(message: String)
         fun onFailure(message: String)
 
     }
