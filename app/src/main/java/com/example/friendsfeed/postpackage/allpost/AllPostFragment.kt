@@ -1,14 +1,16 @@
 package com.example.friendsfeed.postpackage.allpost
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.example.friendsfeed.R
+import com.example.friendsfeed.auth.AuthListener
 
-class AllPostFragment : Fragment() {
+
+class AllPostFragment : Fragment(), AuthListener {
 
     companion object {
         fun newInstance() = AllPostFragment()
@@ -23,8 +25,21 @@ class AllPostFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(AllPostViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(AllPostViewModel::class.java)
         // TODO: Use the ViewModel
     }
+
+    override fun onStarted() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSuccess(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onFailure(message: String) {
+        TODO("Not yet implemented")
+    }
+
 
 }

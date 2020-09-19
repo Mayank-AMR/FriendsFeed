@@ -1,12 +1,9 @@
 package com.example.friendsfeed.auth
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.friendsfeed.postpackage.HomeActivity
 import com.example.friendsfeed.R
 import com.example.friendsfeed.databinding.ActivityLoginBinding
 import com.example.friendsfeed.utils.hide
@@ -34,14 +31,14 @@ class LoginActivity : AppCompatActivity(), AuthListener, KodeinAware {
         binding.viewmodel = viewModel
         viewModel.authListener = this
 
-        viewModel.getSavedAccessToken().observe(this, Observer { accessToken ->
-            if (accessToken != null) {
-                Intent(this, HomeActivity::class.java).also {
-                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // no other activity in stack bz of Flag
-                    startActivity(it)
-                }
-            }
-        })
+//        viewModel.getSavedAccessToken().observe(this, Observer { accessToken ->
+//            if (accessToken != null) {
+//                Intent(this, HomeActivity::class.java).also {
+//                    it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // no other activity in stack bz of Flag
+//                    startActivity(it)
+//                }
+//            }
+//        })
     }
 
     override fun onStarted() {
@@ -52,16 +49,11 @@ class LoginActivity : AppCompatActivity(), AuthListener, KodeinAware {
     override fun onSuccess(message: String) {
         progress_bar_login.hide()
         log(message)
-
-//        root_layout.snackbar("\nName is -> ${responseMessages?.get(0).user[0].name} " +
-//                "\nAccess Code is -> ${responseMessages?.get(0).access_token} ")
-
     }
 
     override fun onFailure(message: String) {
         progress_bar_login.hide()
         log(message)
-        //toast(message)
         root_layout.snackbar(message)
     }
 
