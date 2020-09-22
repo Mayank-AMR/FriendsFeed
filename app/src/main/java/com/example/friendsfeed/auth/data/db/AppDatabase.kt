@@ -5,19 +5,20 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.friendsfeed.auth.data.db.entities.AccessToken
-import com.example.friendsfeed.auth.data.network.responses.RegistrationResponseMessage
+import com.example.friendsfeed.auth.data.db.entities.HomePosts
 
 /**
  * @Project FriendsFeed
  * @Created_by Mayank Kumar on 15-09-2020 12:28 PM
  */
 @Database(
-        entities = [AccessToken::class],
+        entities = [AccessToken::class, HomePosts::class],
         version = 1
 )
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getTokenDao(): TokenDao
+    abstract fun getHomePOstDao(): HomePostDao
 
     companion object {
 

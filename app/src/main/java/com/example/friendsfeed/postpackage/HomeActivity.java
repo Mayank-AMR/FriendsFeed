@@ -13,6 +13,7 @@ import com.example.friendsfeed.fragment.FavoriteFragment;
 import com.example.friendsfeed.fragment.MoreProfileFragment;
 import com.example.friendsfeed.fragment.MyPostFragment;
 import com.example.friendsfeed.fragment.SearchFragment;
+import com.example.friendsfeed.postpackage.allpost.AllPostFragment;
 import com.example.friendsfeed.viewModel.MyPostModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -39,7 +40,7 @@ public class HomeActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.frm_Home, MyPostFragment.newInstance())
+                .add(R.id.frm_Home, AllPostFragment.newInstance())
                 .commit();
 
     }
@@ -53,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     switch (item.getItemId()) {
                         case R.id.nav_Home:
-                            selectedFragment = MyPostFragment.newInstance();
+                            selectedFragment = AllPostFragment.newInstance();
                             break;
                         case R.id.nav_Search:
                             selectedFragment = SearchFragment.newInstance("Param 1", "Param 2");

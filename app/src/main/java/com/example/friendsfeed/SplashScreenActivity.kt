@@ -53,6 +53,7 @@ class SplashScreenActivity : AppCompatActivity(), KodeinAware {
         var isLogedin = false
         viewModel.getSavedAccessToken().observe(this, Observer { accessToken ->
             if (accessToken != null) {
+
                 isLogedin = true
             }
         })
