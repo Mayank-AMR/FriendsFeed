@@ -7,10 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.friendsfeed.R
+import org.kodein.di.android.x.kodein
+import org.kodein.di.KodeinAware
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), KodeinAware {
+
+    override val kodein by kodein()
 
     companion object {
+        @JvmStatic
         fun newInstance() = ProfileFragment()
     }
 

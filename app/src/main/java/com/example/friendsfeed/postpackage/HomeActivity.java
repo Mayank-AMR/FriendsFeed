@@ -13,6 +13,7 @@ import com.example.friendsfeed.fragment.FavoriteFragment;
 import com.example.friendsfeed.fragment.MoreProfileFragment;
 import com.example.friendsfeed.fragment.SearchFragment;
 import com.example.friendsfeed.postpackage.allpost.AllPostFragment;
+import com.example.friendsfeed.profile.ProfileFragment;
 import com.example.friendsfeed.viewModel.MyPostModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -68,7 +69,8 @@ public class HomeActivity extends AppCompatActivity {
                             break;
 
                         case R.id.nav_More:
-                            selectedFragment = MoreProfileFragment.newInstance("Param 1", "Param 2");
+                            //selectedFragment = MoreProfileFragment.newInstance("Param 1", "Param 2");
+                            selectedFragment = ProfileFragment.newInstance();
                             break;
                     }
                     getSupportFragmentManager()
