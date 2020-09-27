@@ -1,7 +1,7 @@
 package com.example.friendsfeed.auth.data.db.entities
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
+import com.example.friendsfeed.auth.data.network.responses.HomeUser
 
 /**
  * @Project FriendsFeed
@@ -9,8 +9,9 @@ import androidx.room.PrimaryKey
  */
 @Entity
 data class HomePosts (
-        @PrimaryKey(autoGenerate = false) val id: Int,
+        @PrimaryKey(autoGenerate = false) @ColumnInfo(name = "rowid")val id: Int,
         val user_id: Int,
+        @Embedded var user: HomeUser,
         val post: String?,
         val post_image1: String?,
         val post_image2: String?,
@@ -22,5 +23,7 @@ data class HomePosts (
         val liked: Int,
         val created_at: String,
         val updated_at: String
-        //var user: List<HomeUser>
+
+        //@Embedded @ColumnInfo(name = "home_user_id")var user: HomeUser
+        //val userID:Int = user.id
 )

@@ -6,12 +6,10 @@ import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.friendsfeed.SharedPreference.SharedPrefManager
 import androidx.lifecycle.Observer
 import com.example.friendsfeed.auth.AuthViewModel
 import com.example.friendsfeed.auth.AuthViewModelFactory
 import com.example.friendsfeed.auth.LoginActivity
-import com.example.friendsfeed.auth.data.db.entities.AccessToken
 import com.example.friendsfeed.postpackage.HomeActivity
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein

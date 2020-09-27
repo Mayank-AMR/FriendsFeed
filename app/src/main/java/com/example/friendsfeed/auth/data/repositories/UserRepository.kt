@@ -7,6 +7,7 @@ import com.example.friendsfeed.auth.data.network.SafeApiRequest
 import com.example.friendsfeed.auth.data.network.responses.AuthResponse
 import com.example.friendsfeed.auth.data.network.responses.RegistrationResponse
 import com.example.friendsfeed.auth.data.network.responses.RegistrationResponseMessage
+import com.example.friendsfeed.auth.data.preferences.PreferenceProvider
 
 /**
  * @Project Sample Chat
@@ -14,7 +15,9 @@ import com.example.friendsfeed.auth.data.network.responses.RegistrationResponseM
  */
 class UserRepository(
         private val api: MyApi,
-        private val db: AppDatabase
+        private val db: AppDatabase,
+        private val tokenPrefs: PreferenceProvider
+
 ) : SafeApiRequest() {
     private val acceptType = "application/json"
 
@@ -32,5 +35,19 @@ class UserRepository(
     suspend fun saveToken(accessToken: AccessToken) = db.getTokenDao().upsert(accessToken)
 
     fun getToken() = db.getTokenDao().getAccessToken()
+
+
+    fun saveTokenInPrefs(tokenType: String, token: String) {
+        tokenPrefs.saveUserAccessToken(tokenType, token)
+
+    }
+
+    fun getTokenFromPrefs() = tokenPrefs.getUserAccessToken()
+
+    fun saveEmailVerStatusInPrefs(status: Int) {
+        tokenPrefs.saveEmailVerificationStatus(status)
+    }
+
+    fun getEmailVerStatusFromPrefs() = tokenPrefs.getEmailVerificationStatus()
 
 }

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="post"
+            type="com.example.friendsfeed.auth.data.db.entities.HomePosts" />
+
+        <variable
+            name="imageUrl"
+            type="com.example.friendsfeed.auth.data.network.responses.HomeUser" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        app:cardCornerRadius="@dimen/fmh_card_corner_radius"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/stroke_color"
+        app:strokeWidth="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="32dp"
+                android:orientation="horizontal"
+                android:padding="4dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    app:cardCornerRadius="20dp">
+
+                    <ImageView
+                        android:id="@+id/user_pic_iv"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:cropToPadding="true"
+                        android:padding="4dp"
+                        app:srcCompat="@color/box_hint_text_color"
+                        app:image="@{post.post_image1}"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/user_full_name_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{post.user.name}"
+                        android:textColor="#00796B"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/user_name_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{post.user.username}"
+                        android:textSize="16sp" />
+                </LinearLayout>
+                <!--Button for share or forward post-->
+                <!-- <Button
+                    android:id="@+id/text_Button"
+                    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    app:iconGravity= "end"
+                    android:textColor="@android:color/darker_gray"
+                    app:icon="@drawable/ic_more_vert"
+                    app:iconPadding="0dp"
+                    app:iconTint="@android:color/black" />
+        -->
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginBottom="0dp"
+                android:background="@drawable/shadow" />
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/post_Image_container_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="0dp"
+                android:foregroundGravity="center"
+                android:padding="0dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp">
+
+
+                <ImageView
+                    android:id="@+id/post_image_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    app:srcCompat="@drawable/ic_app_logo"
+                    app:image="@{post.post_image1}"
+                    />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/post_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="Post Title"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/post_description_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="@{post.post}"
+                android:textSize="16sp" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="2dp"
+                android:foregroundGravity="center"
+                android:padding="4dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button_liks"
+                        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/darker_gray"
+                        app:icon="@drawable/ic_favorite_border_black_24dp"
+                        app:iconPadding="0dp"
+                        app:iconTint="@android:color/black" />
+
+                    <Button
+                        android:id="@+id/button_comments"
+                        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/darker_gray"
+                        app:icon="@drawable/ic_insert_comment"
+                        app:iconPadding="0dp"
+                        app:iconTint="@android:color/black" />
+
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

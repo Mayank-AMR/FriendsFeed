@@ -30,7 +30,7 @@ class FFeedApplication : Application(), KodeinAware {
         bind() from singleton { MyApi(instance()) }
         bind() from singleton { AppDatabase(instance()) }
         bind() from singleton { PreferenceProvider(instance()) }
-        bind() from singleton { UserRepository(instance(), instance()) }
+        bind() from singleton { UserRepository(instance(), instance(),instance()) }
         bind() from singleton { HomePostRepository(instance(), instance(),instance()) }
         bind() from provider { AuthViewModelFactory(instance()) }
         bind() from provider { AllPostViewModelFactory(instance()) }

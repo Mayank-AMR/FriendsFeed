@@ -6,7 +6,7 @@ package com.example.friendsfeed.auth.data.network.responses
  */
 data class HomeUser(
         val id: Int,
-        val name: String,
-        val username: String,
-        val profileImage: String
+        val name: String?,
+        val username: String?,
+        val profileImage: String?
 )

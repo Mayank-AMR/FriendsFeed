@@ -11,17 +11,29 @@ apply plugin: "androidx.navigation.safeargs"
 //apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.example.friendsfeed"
         minSdkVersion 23
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                //arguments = ["room.incremental":"true"]
+                //arguments = mapOf("room.incremental" to "true")
+                arguments = [
+                        "room.schemaLocation":"$projectDir/schemas".toString(),
+                        "room.incremental":"true",
+                        "room.expandProjection":"true"]
+            }
+        }
+
     }
 
     buildTypes {
@@ -36,8 +48,32 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    dataBinding {
-        enabled = true
+//    dataBinding {
+//        enabled = true
+//    }
+
+    buildFeatures {
+        dataBinding = true
+        // for view binding:
+        // viewBinding = true
+    }
+
+    // IMPORTANT!  Enables kotlin synthetic view properties.
+    // See: https://github.com/Kotlin/KEEP/blob/master/proposals/android-extensions-entity-caching.md
+    androidExtensions {
+        experimental = true
+    }
+
+    configurations.all {
+        resolutionStrategy.force "org.antlr:antlr4-runtime:4.7.1"
+        resolutionStrategy.force "org.antlr:antlr4-tool:4.7.1"
+    }
+    //kotlin DSL
+    configurations.all {
+        resolutionStrategy {
+            force("org.antlr:antlr4-runtime:4.7.1")
+            force("org.antlr:antlr4-tool:4.7.1")
+        }
     }
 
 }
@@ -114,18 +150,19 @@ dependencies {
     // Android Room
     implementation "androidx.room:room-runtime:2.2.5"
     implementation "androidx.room:room-ktx:2.2.5"
+    annotationProcessor "androidx.room:room-compiler:2.3.0-alpha02"
     kapt "androidx.room:room-compiler:2.2.5"
 
     // Android Navigation Architecture
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.0"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
 
-    // RecyclerView and recyclerview data binding
+    // RecyclerView and recyclerview data binding using groupie library
     implementation 'com.xwray:groupie:2.3.0'
     implementation 'com.xwray:groupie-kotlin-android-extensions:2.3.0'
     implementation 'com.xwray:groupie-databinding:2.3.0'
-//
-//    implementation "androidx.preference:preference-ktx:1.1.1"
+
+    implementation "androidx.preference:preference-ktx:1.1.1"
 
     // The new Architecture pattern goes above......................................................
 

@@ -26,6 +26,8 @@ class AuthViewModel(
 
     var authListener: AuthListener? = null
 
+    private val tokenTypeValidate = "Bearer"
+
     fun getSavedAccessToken() = repository.getToken()
 
     fun onLoginButtonClick(view: View) {
@@ -39,9 +41,11 @@ class AuthViewModel(
             try {
                 val authResponse = repository.userLogin(email!!, password!!)
                 authResponse.message[0].let {
-                    if (it.token_type.equals("Bearer"))
+                    if (it.token_type.equals(tokenTypeValidate))
                         authListener?.onSuccess("Login Successful")
                     repository.saveToken(AccessToken(it.active, it.token_type, it.access_token))
+                    repository.saveTokenInPrefs(it.token_type!!, it.access_token!!)
+                    repository.saveEmailVerStatusInPrefs(it.active!!)
                     return@main
                 }
             } catch (e: ApiException) {

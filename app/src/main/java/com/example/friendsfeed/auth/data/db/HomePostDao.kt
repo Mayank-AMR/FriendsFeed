@@ -18,7 +18,7 @@ interface HomePostDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveAllHomePosts(homepost: List<HomePosts>)
 
-    @Query("SELECT * FROM HomePosts")
+    @Query("SELECT * FROM homeposts")
     fun getHomePosts(): LiveData<List<HomePosts>>
 
 }

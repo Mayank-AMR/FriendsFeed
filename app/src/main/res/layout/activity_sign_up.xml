@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/my_gradient"
     android:paddingStart="16dp"
-    android:paddingEnd="16dp"
-    tools:context=".SignUpActivity">
+    android:paddingEnd="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout1"

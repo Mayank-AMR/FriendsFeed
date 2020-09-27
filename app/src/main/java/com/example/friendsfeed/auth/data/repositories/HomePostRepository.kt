@@ -1,6 +1,5 @@
 package com.example.friendsfeed.auth.data.repositories
 
-import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.friendsfeed.auth.data.db.AppDatabase
@@ -11,10 +10,6 @@ import com.example.friendsfeed.auth.data.preferences.PreferenceProvider
 import com.example.friendsfeed.utils.Coroutine
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.time.temporal.ChronoUnit
-import java.util.*
 
 /**
  * @Project FriendsFeed
@@ -60,32 +55,22 @@ class HomePostRepository(
 
 
     // isFetchNeeded() contain logic when to fetch the post from backend.
-    private fun isFetchNeeded(lastSavedAt: String): Boolean {
-        // Later I will put logic about when fetch needed.
-
-        //val formet =  SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-        //val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm")
-        // val formattedDate = formatter.format(parser.parse(lastSavedAt))
-        return true
+    private fun isFetchNeeded(savedAt: String): Boolean {
+        // If saved time is lesser than 6 hours (21600000 milli sec) then return true
+        return savedAt.toLong() + 21600000 < System.currentTimeMillis()
     }
 
 
     // savePosts() saves posts in local db.
-    @SuppressLint("SimpleDateFormat")
     private fun savePosts(posts: List<HomePosts>) {
         Coroutine.io {
-            //val df: DateFormat = SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss")
-            val currentDateTime: String = SimpleDateFormat("dd.MM.yyyy HH:mm").format(Calendar.getInstance().time)
 
-            prefs.saveLastSavedAt(currentDateTime)
+            val currentTimeInMilliSec: String = System.currentTimeMillis().toString()
+            prefs.saveLastSavedAt(currentTimeInMilliSec)
+
             db.getHomePOstDao().saveAllHomePosts(posts)
         }
     }
 
-
-    private fun giveDateTime(): String {
-        val df: DateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm")
-        return ""
-    }
 
 }

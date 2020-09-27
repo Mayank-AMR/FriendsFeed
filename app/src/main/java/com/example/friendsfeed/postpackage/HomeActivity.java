@@ -11,7 +11,6 @@ import com.example.friendsfeed.R;
 import com.example.friendsfeed.fragment.CreatePostFragment;
 import com.example.friendsfeed.fragment.FavoriteFragment;
 import com.example.friendsfeed.fragment.MoreProfileFragment;
-import com.example.friendsfeed.fragment.MyPostFragment;
 import com.example.friendsfeed.fragment.SearchFragment;
 import com.example.friendsfeed.postpackage.allpost.AllPostFragment;
 import com.example.friendsfeed.viewModel.MyPostModel;
