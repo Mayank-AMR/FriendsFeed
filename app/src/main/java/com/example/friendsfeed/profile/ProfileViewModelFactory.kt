@@ -10,7 +10,6 @@ import com.example.friendsfeed.auth.data.repositories.ProfileRepository
  */
 
 @Suppress("UNCHECKED_CAST")
-
 class ProfileViewModelFactory(
         private val repository: ProfileRepository
 ) : ViewModelProvider.NewInstanceFactory(){
@@ -18,5 +17,4 @@ class ProfileViewModelFactory(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return ProfileViewModel(repository) as T
     }
-
 }

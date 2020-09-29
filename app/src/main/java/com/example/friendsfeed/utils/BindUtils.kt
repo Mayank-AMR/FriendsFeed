@@ -11,7 +11,7 @@ import com.example.friendsfeed.R
  */
 
 @BindingAdapter("image")
-fun loadImage(view: ImageView, url: String) {
+fun loadImage(view: ImageView, url: String?) {
     Glide.with(view)
             .load(url)
             //.centerCrop()

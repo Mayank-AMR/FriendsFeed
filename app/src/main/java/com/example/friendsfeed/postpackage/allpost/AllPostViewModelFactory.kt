@@ -17,5 +17,4 @@ class AllPostViewModelFactory(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return AllPostViewModel(repository) as T
     }
-
 }

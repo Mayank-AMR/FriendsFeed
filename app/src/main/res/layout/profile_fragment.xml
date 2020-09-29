@@ -1,254 +1,273 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".profile.ProfileFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.core.widget.NestedScrollView
+    <data>
+
+        <variable
+            name="profile"
+            type="com.example.friendsfeed.profile.response.ProfileResponse" />
+
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/profile_visited_in_last_week_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="9999  "
-                    android:textColor="#000"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="profile visits in last 7days"
-                    android:textColor="#b8bbc1"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.7dp"
-                android:layout_marginTop="2dp"
-                android:background="#dddddd" />
-
-            <LinearLayout
-                android:id="@+id/main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
-                    <com.mikhaellopez.circularimageview.CircularImageView
-                        android:id="@+id/profile_image_image_view"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/circle_border"
-                        android:src="@drawable/ten"
-                        app:civ_border_color="#FF000000"
-                        app:civ_border_width="2dp" />
+                    <TextView
+                        android:id="@+id/profile_visited_in_last_week_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9999  "
+                        android:textColor="#000"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="profile visits in last 7days"
+                        android:textColor="#b8bbc1"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginTop="2dp"
+                    android:background="#dddddd" />
+
+                <LinearLayout
+                    android:id="@+id/main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
+                        android:layout_marginLeft="5dp"
+                        android:orientation="horizontal">
+
+                        <com.mikhaellopez.circularimageview.CircularImageView
+                            android:id="@+id/profile_image_image_view"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/circle_border"
+                            android:src="@drawable/ten"
+                            app:civ_border_color="#FF000000"
+                            app:civ_border_width="2dp"
+                            app:image="@{profile.message[0].profileImage}" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:orientation="horizontal">
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
 
                             <LinearLayout
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="30dp"
+                                android:orientation="horizontal">
 
-                                <TextView
-                                    android:id="@+id/total_post_created_text_view"
-                                    android:layout_width="wrap_content"
+                                <LinearLayout
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:text="456"
-                                    android:textColor="@color/tab_select_txt"
-                                    android:textStyle="bold" />
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
 
-                                <TextView
-                                    android:layout_width="wrap_content"
+                                    <TextView
+                                        android:id="@+id/total_post_created_text_view"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="0"
+                                        android:textColor="@color/tab_select_txt"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="posts"
+                                        android:textColor="#b8bbc1" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:text="posts"
-                                    android:textColor="#b8bbc1" />
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
 
+                                    <TextView
+                                        android:id="@+id/total_followers_text_view"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{String.valueOf(profile.message[0].followers), default = 0 }"
+                                        android:textColor="@color/tab_select_txt"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="followers"
+                                        android:textColor="#b8bbc1" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/total_followings_text_view"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{String.valueOf(profile.message[0].following), default = 0 }"
+                                        android:textColor="@color/tab_select_txt"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="following"
+                                        android:textColor="#b8bbc1" />
+
+                                </LinearLayout>
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/total_followers_text_view"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="432"
-                                    android:textColor="@color/tab_select_txt"
+                                    android:id="@+id/promote_text_view"
+                                    android:layout_width="0dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginLeft="17dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginRight="2dp"
+                                    android:layout_weight="1"
+                                    android:alpha="0.5"
+                                    android:background="@drawable/rectangle"
+                                    android:contentDescription="Invite other user to follow"
+                                    android:gravity="center"
+                                    android:text="Promote"
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="followers"
-                                    android:textColor="#b8bbc1" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/total_followings_text_view"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="418"
-                                    android:textColor="@color/tab_select_txt"
+                                    android:id="@+id/edit_profile_text_view"
+                                    android:layout_width="0dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginLeft="2dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginRight="17dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/rectangle"
+                                    android:gravity="center"
+                                    android:text="Edit Profile"
                                     android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="following"
-                                    android:textColor="#b8bbc1" />
-
                             </LinearLayout>
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/promote_text_view"
-                                android:layout_width="0dp"
-                                android:layout_height="30dp"
-                                android:layout_marginLeft="17dp"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginRight="2dp"
-                                android:layout_weight="1"
-                                android:background="@drawable/rectangle"
-                                android:contentDescription="Invite other user to follow"
-                                android:gravity="center"
-                                android:text="Promote"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/edit_profile_text_view"
-                                android:layout_width="0dp"
-                                android:layout_height="30dp"
-                                android:layout_marginLeft="2dp"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginRight="17dp"
-                                android:layout_weight="1"
-                                android:background="@drawable/rectangle"
-                                android:gravity="center"
-                                android:text="Edit Profile"
-                                android:textStyle="bold" />
-                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/profile_name_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="Person Name"
+                    android:text="@{profile.message[0].name, default = Anonymous }"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
+
+                <!--            This is commented because this is not part of self profile-->
+                <!--            but it is used in another user profile-->
+
+                <TextView
+                    android:id="@+id/profile_user_name_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@{profile.message[0].username, default = username }"
+                    android:textSize="12dp"
+                    android:textStyle="italic" />
+
+
+                <!--   <TextView-->
+                <!--       android:id="@+id/profile_bio_text_view"-->
+                <!--       android:layout_width="wrap_content"-->
+                <!--       android:layout_height="wrap_content"-->
+                <!--       android:layout_marginLeft="10dp"-->
+                <!--       android:layout_marginTop="2dp"-->
+                <!--       android:textSize="12dp"-->
+                <!--       android:hint="Zomoto-Vadodara-foodie"-->
+                <!--       android:textColor="#000" />-->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#e7e7e7" />
+
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottombar_more_profile"
+                    style="@style/Widget.MaterialComponents.BottomAppBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:menu="@menu/bottom_bar" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/profile_media_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:focusable="false"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingTop="0dp"
+                    android:paddingRight="2dp"
+                    android:paddingBottom="0dp" />
+
             </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
-            <TextView
-                android:id="@+id/profile_user_name_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Person Name"
-                android:textColor="#000"
-                android:textStyle="bold" />
-
-            <!--            This is commented because this is not part of self profile-->
-            <!--            but it is used in another user profile-->
-
-            <!--            <TextView-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginLeft="10dp"-->
-            <!--                android:layout_marginTop="2dp"-->
-            <!--                android:text="Personal Posts"-->
-            <!--                android:textColor="#d4d6d8"-->
-            <!--                android:textSize="12dp" />-->
-
-
-            <!--                <TextView-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_marginLeft="10dp"-->
-            <!--                    android:layout_marginTop="2dp"-->
-            <!--                    android:textSize="12dp"-->
-            <!--                    android:text="Zomoto-Vadodara-foodie"-->
-            <!--                    android:textColor="#000" />-->
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.7dp"
-                android:layout_marginTop="10dp"
-                android:background="#e7e7e7" />
-
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottombar_more_profile"
-                style="@style/Widget.MaterialComponents.BottomAppBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:menu="@menu/bottom_bar" />
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/profile_media_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:focusable="false"
-                android:nestedScrollingEnabled="false"
-                android:paddingTop="0dp"
-                android:paddingRight="2dp"
-                android:paddingBottom="0dp" />
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
-
-</FrameLayout>
+        <ProgressBar
+            android:id="@+id/progress_bar_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:visibility="invisible" />
+    </FrameLayout>
+</layout>

@@ -7,9 +7,11 @@ import com.example.friendsfeed.auth.data.network.MyApi
 import com.example.friendsfeed.auth.data.network.NetworkConnectionInterceptor
 import com.example.friendsfeed.auth.data.preferences.PreferenceProvider
 import com.example.friendsfeed.auth.data.repositories.HomePostRepository
+import com.example.friendsfeed.auth.data.repositories.ProfileRepository
 import com.example.friendsfeed.auth.data.repositories.UserRepository
 import com.example.friendsfeed.postpackage.allpost.AllPostFragment
 import com.example.friendsfeed.postpackage.allpost.AllPostViewModelFactory
+import com.example.friendsfeed.profile.ProfileViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -32,7 +34,10 @@ class FFeedApplication : Application(), KodeinAware {
         bind() from singleton { PreferenceProvider(instance()) }
         bind() from singleton { UserRepository(instance(), instance(),instance()) }
         bind() from singleton { HomePostRepository(instance(), instance(),instance()) }
+        bind() from singleton { ProfileRepository(instance(), instance()) }
         bind() from provider { AuthViewModelFactory(instance()) }
         bind() from provider { AllPostViewModelFactory(instance()) }
+        bind() from provider { ProfileViewModelFactory(instance()) }
+
     }
 }

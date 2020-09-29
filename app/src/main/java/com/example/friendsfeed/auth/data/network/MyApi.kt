@@ -3,6 +3,7 @@ package com.example.friendsfeed.auth.data.network
 import com.example.friendsfeed.auth.data.network.responses.AuthResponse
 import com.example.friendsfeed.auth.data.network.responses.RegistrationResponse
 import com.example.friendsfeed.auth.data.network.responses.HomePostResponse
+import com.example.friendsfeed.profile.response.ProfileResponse
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -13,6 +14,8 @@ import retrofit2.http.*
  * @Project Sample Chat
  * @Created_by Mayank Kumar on 08-09-2020 08:26 AM
  */
+
+
 interface MyApi {
 
 
@@ -45,6 +48,14 @@ interface MyApi {
             @Header("Accept") accept_type: String?,
             @Header("Authorization") authorization: String?
     ): Response<HomePostResponse>
+
+
+    // This API call fun return Profile Data in .profile.response.Message.kt object type
+    @GET("myProfile")
+    suspend fun getProfileData(
+            @Header("Accept") accept_type: String?,
+            @Header("Authorization") authorization: String?
+    ): Response<ProfileResponse>
 
 
     companion object {

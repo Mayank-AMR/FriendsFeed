@@ -23,7 +23,6 @@ import org.kodein.di.generic.instance
 class AllPostFragment : Fragment(), AuthListener, KodeinAware {
 
     companion object {
-        //fun newInstance() = AllPostFragment()
         @JvmStatic
         fun newInstance() = AllPostFragment()
     }
