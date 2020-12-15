@@ -19,7 +19,7 @@ abstract class SafeApiRequest {
             return response.body()!!
         } else {
             val error = response.errorBody()?.toString()
-            // error response is in JSON Object
+            // error response is in JSON Object that is
             // Response{protocol=http/1.1, code=404, message=Not Found, url=https://friendsfeed.herokuapp.com.../../..}
 
             val message = StringBuilder()

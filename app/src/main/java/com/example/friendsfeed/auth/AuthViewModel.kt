@@ -1,5 +1,6 @@
 package com.example.friendsfeed.auth
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
 import com.example.friendsfeed.auth.data.db.entities.AccessToken
@@ -43,9 +44,11 @@ class AuthViewModel(
                 authResponse.message[0].let {
                     if (it.token_type.equals(tokenTypeValidate))
                         authListener?.onSuccess("Login Successful")
+                    Log.d("Login Activity", "onLoginButtonClick: Login Successful ")
                     repository.saveToken(AccessToken(it.active, it.token_type, it.access_token))
                     repository.saveTokenInPrefs(it.token_type!!, it.access_token!!)
                     repository.saveEmailVerStatusInPrefs(it.active!!)
+                    Log.d("Login Activity ", "onLoginButtonClick: User Token is :"+repository.getTokenFromPrefs()+"\n\n")
                     return@main
                 }
             } catch (e: ApiException) {

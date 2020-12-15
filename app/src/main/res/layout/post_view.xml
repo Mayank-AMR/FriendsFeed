@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,9 +9,6 @@
             name="post"
             type="com.example.friendsfeed.auth.data.db.entities.HomePosts" />
 
-        <variable
-            name="imageUrl"
-            type="com.example.friendsfeed.auth.data.network.responses.HomeUser" />
 
     </data>
 
@@ -49,7 +47,7 @@
                         android:cropToPadding="true"
                         android:padding="4dp"
                         app:srcCompat="@color/box_hint_text_color"
-                        app:image="@{post.post_image1}"/>
+                        app:image="@{post.user.profileImage}" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -64,6 +62,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{post.user.name}"
+                        tool:text="Full Name"
+
                         android:textColor="#00796B"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -73,6 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{post.user.username}"
+                        tool:text="user_name"
                         android:textSize="16sp" />
                 </LinearLayout>
                 <!--Button for share or forward post-->
@@ -114,25 +115,29 @@
                     android:id="@+id/post_image_iv"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
+                    tool:layout_height="300dp"
+
                     app:srcCompat="@drawable/ic_app_logo"
-                    app:image="@{post.post_image1}"
-                    />
+                    app:image="@{post.post_image1}" />
+<!--                android:layout_height="300dp"-->
+
             </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:id="@+id/post_title_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="Post Title"
-                android:textColor="@android:color/black"
-                android:textSize="20sp" />
+            <!--            <TextView-->
+            <!--                android:id="@+id/post_title_tv"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:padding="4dp"-->
+            <!--                android:text="Post Title"-->
+            <!--                android:textColor="@android:color/black"-->
+            <!--                android:textSize="20sp" />-->
 
             <TextView
                 android:id="@+id/post_description_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
+                tool:text="Post description."
                 android:text="@{post.post}"
                 android:textSize="16sp" />
 
@@ -167,7 +172,11 @@
                         android:textColor="@android:color/darker_gray"
                         app:icon="@drawable/ic_favorite_border_black_24dp"
                         app:iconPadding="0dp"
+                        android:layout_marginStart="4dp"
+                        android:text="@{String.valueOf(post.likes_count)}"
+                        tool:text="0"
                         app:iconTint="@android:color/black" />
+
 
                     <Button
                         android:id="@+id/button_comments"
@@ -177,6 +186,9 @@
                         android:textColor="@android:color/darker_gray"
                         app:icon="@drawable/ic_insert_comment"
                         app:iconPadding="0dp"
+                        android:layout_marginStart="8dp"
+                        android:text="@{String.valueOf(post.comments_count)}"
+                        tool:text="0"
                         app:iconTint="@android:color/black" />
 
 

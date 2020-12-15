@@ -15,7 +15,6 @@ import retrofit2.http.*
  * @Created_by Mayank Kumar on 08-09-2020 08:26 AM
  */
 
-
 interface MyApi {
 
 
@@ -75,4 +74,10 @@ interface MyApi {
                     .create(MyApi::class.java)
         }
     }
+
 }
+
+
+
+
+

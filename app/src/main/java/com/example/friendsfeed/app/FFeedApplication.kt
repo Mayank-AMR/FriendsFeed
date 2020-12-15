@@ -33,10 +33,10 @@ class FFeedApplication : Application(), KodeinAware {
         bind() from singleton { AppDatabase(instance()) }
         bind() from singleton { PreferenceProvider(instance()) }
         bind() from singleton { UserRepository(instance(), instance(),instance()) }
-        bind() from singleton { HomePostRepository(instance(), instance(),instance()) }
+        bind() from singleton { HomePostRepository(instance(), instance(),instance(),instance()) }
         bind() from singleton { ProfileRepository(instance(), instance()) }
         bind() from provider { AuthViewModelFactory(instance()) }
-        bind() from provider { AllPostViewModelFactory(instance()) }
+        bind() from provider { AllPostViewModelFactory(instance(),instance()) }
         bind() from provider { ProfileViewModelFactory(instance()) }
 
     }

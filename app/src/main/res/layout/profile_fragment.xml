@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".profile.ProfileFragment">
 
-    <data>
+<!--    <data>-->
 
-        <variable
-            name="profile"
-            type="com.example.friendsfeed.profile.response.ProfileResponse" />
+<!--        <variable-->
+<!--            name="profileViewModel"-->
+<!--            type="com.example.friendsfeed.profile.ProfileViewModel.profile" />-->
 
-    </data>
+<!--    </data>-->
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -72,8 +74,7 @@
                             android:background="@drawable/circle_border"
                             android:src="@drawable/ten"
                             app:civ_border_color="#FF000000"
-                            app:civ_border_width="2dp"
-                            app:image="@{profile.message[0].profileImage}" />
+                            app:civ_border_width="2dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -122,7 +123,6 @@
                                         android:id="@+id/total_followers_text_view"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@{String.valueOf(profile.message[0].followers), default = 0 }"
                                         android:textColor="@color/tab_select_txt"
                                         android:textStyle="bold" />
 
@@ -145,7 +145,6 @@
                                         android:id="@+id/total_followings_text_view"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@{String.valueOf(profile.message[0].following), default = 0 }"
                                         android:textColor="@color/tab_select_txt"
                                         android:textStyle="bold" />
 
@@ -206,7 +205,6 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:hint="Person Name"
-                    android:text="@{profile.message[0].name, default = Anonymous }"
                     android:textColor="#000"
                     android:textStyle="bold" />
 
@@ -219,20 +217,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="2dp"
-                    android:text="@{profile.message[0].username, default = username }"
                     android:textSize="12dp"
                     android:textStyle="italic" />
 
 
-                <!--   <TextView-->
-                <!--       android:id="@+id/profile_bio_text_view"-->
-                <!--       android:layout_width="wrap_content"-->
-                <!--       android:layout_height="wrap_content"-->
-                <!--       android:layout_marginLeft="10dp"-->
-                <!--       android:layout_marginTop="2dp"-->
-                <!--       android:textSize="12dp"-->
-                <!--       android:hint="Zomoto-Vadodara-foodie"-->
-                <!--       android:textColor="#000" />-->
+<!--                   <TextView-->
+<!--                       android:id="@+id/profile_bio_text_view"-->
+<!--                       android:layout_width="wrap_content"-->
+<!--                       android:layout_height="wrap_content"-->
+<!--                       android:layout_marginLeft="10dp"-->
+<!--                       android:layout_marginTop="2dp"-->
+<!--                       android:textSize="12dp"-->
+<!--                       android:hint="Zomoto-Vadodara-foodie"-->
+<!--                       android:textColor="#000" />-->
 
                 <View
                     android:layout_width="match_parent"

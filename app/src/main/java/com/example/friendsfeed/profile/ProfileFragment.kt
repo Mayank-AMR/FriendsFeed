@@ -36,13 +36,14 @@ class ProfileFragment : Fragment(), KodeinAware {
         return ProfileFragmentBinding.inflate(inflater, container, false)
                 .apply {
                     lifecycleOwner = viewLifecycleOwner
-                    Coroutine.main {
-                        progress_bar_profile.show()
-                        viewModel.profile.await().observe(viewLifecycleOwner, Observer {
-                            progress_bar_profile.hide()
-                            profile = it       // Attaching view model to the xml layout variable
-                        })
-                    }
+//                    Coroutine.main {
+//                        progress_bar_profile.show()
+//                        viewModel.profile.await().observe(viewLifecycleOwner, Observer {
+//                            progress_bar_profile.hide()
+//                            profile = it       // Attaching view model to the xml layout variable
+//                        })
+//                    }
+                    //profileViewModel = viewModel
                 }.root
     }
 
@@ -50,21 +51,4 @@ class ProfileFragment : Fragment(), KodeinAware {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this, factory).get(ProfileViewModel::class.java)
     }
-
-//    private fun bindUI() = Coroutine.main {
-//
-//        //binding.profile = viewModel.profile
-//
-//        //all_post_pb.show()
-//        viewModel.profile.await().observe(viewLifecycleOwner, Observer {
-//
-//            //all_post_pb.hide()
-//
-//            //binding.profile = it
-//
-//            context?.log(it.message[0].username + "\n\n\n\nHEllo")
-//
-//        })
-//    }
-
 }

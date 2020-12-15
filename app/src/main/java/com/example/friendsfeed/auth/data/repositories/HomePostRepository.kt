@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.friendsfeed.auth.data.db.AppDatabase
 import com.example.friendsfeed.auth.data.db.entities.HomePosts
 import com.example.friendsfeed.auth.data.network.MyApi
+import com.example.friendsfeed.auth.data.network.NetworkConnectionInterceptor
 import com.example.friendsfeed.auth.data.network.SafeApiRequest
 import com.example.friendsfeed.auth.data.preferences.PreferenceProvider
 import com.example.friendsfeed.utils.Coroutine
@@ -19,7 +20,8 @@ class HomePostRepository(
 
         private val api: MyApi,
         private val db: AppDatabase,
-        private val prefs: PreferenceProvider
+        private val prefs: PreferenceProvider,
+        private val intercepter: NetworkConnectionInterceptor
 
 ) : SafeApiRequest() {
 
@@ -56,8 +58,12 @@ class HomePostRepository(
 
     // isFetchNeeded() contain logic when to fetch the post from backend.
     private fun isFetchNeeded(savedAt: String): Boolean {
-        // If saved time is lesser than 6 hours (21600000 milli sec) then return true
-        return savedAt.toLong() + 21600000 < System.currentTimeMillis()
+        if (intercepter.isNetworkAvailable()) { // if internet connected then return true
+            return true
+        } else {
+            // If saved time is lesser than 6 hours (21600000 milli sec) then return true
+            return savedAt.toLong() + 21600000 < System.currentTimeMillis()
+        }
     }
 
 

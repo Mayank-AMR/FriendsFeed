@@ -93,6 +93,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private void sendRegistrationToServer(String token) {
         Log.d(TAG, "sendRegistrationToServer: ");
+        Log.d(TAG, "sendRegistrationToServer: \nToken: "+token);
 
     }
 

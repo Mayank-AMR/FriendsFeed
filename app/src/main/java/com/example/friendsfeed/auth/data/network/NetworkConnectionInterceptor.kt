@@ -11,7 +11,8 @@ import okhttp3.Response
  * @Project FriendsFeed
  * @Created_by Mayank Kumar on 17-09-2020 03:20 PM
  */
-class NetworkConnectionInterceptor(
+class
+NetworkConnectionInterceptor(
         context: Context
 ) : Interceptor {
 
@@ -23,7 +24,7 @@ class NetworkConnectionInterceptor(
         return chain.proceed(chain.request())
     }
 
-    private fun isNetworkAvailable() =
+    fun isNetworkAvailable() =
             (applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).run {
                 getNetworkCapabilities(activeNetwork)?.run {
                     hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)

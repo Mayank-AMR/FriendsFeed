@@ -59,7 +59,7 @@ class AllPostFragment : Fragment(), AuthListener, KodeinAware {
 
     private fun bindUI() = Coroutine.main {
         all_post_pb.show()
-        viewModel.posts.await().observe(viewLifecycleOwner, Observer {
+        viewModel.posts.await()?.observe(viewLifecycleOwner, Observer {
 
             all_post_pb.hide()
             initRecyclerView(it.toHomePostItem())
