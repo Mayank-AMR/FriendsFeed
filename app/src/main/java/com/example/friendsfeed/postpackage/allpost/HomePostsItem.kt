@@ -1,6 +1,5 @@
 package com.example.friendsfeed.postpackage.allpost
 
-import com.bumptech.glide.Glide
 import com.example.friendsfeed.R
 import com.example.friendsfeed.auth.data.db.entities.HomePosts
 import com.example.friendsfeed.databinding.PostViewBinding

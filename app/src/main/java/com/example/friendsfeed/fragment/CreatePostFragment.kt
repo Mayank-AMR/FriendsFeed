@@ -107,7 +107,7 @@ class CreatePostFragment : Fragment() {
         values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpg")
         val fileUri = context?.contentResolver?.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if (intent.resolveActivity(context!!.packageManager) != null) {
+        if (context?.let { intent.resolveActivity(it?.packageManager) } != null) {
             mCurrentPhotoPath = fileUri.toString()
             intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri)
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
